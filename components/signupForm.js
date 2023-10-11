@@ -2,6 +2,8 @@ import { View, Text, StyleSheet, Dimensions, TextInput, TouchableOpacity } from 
 import React from 'react'
 
 const width = Dimensions.get('window').width
+const height = Dimensions.get('window').height
+
 const SignupForm = ({ navigation }) => {
   return (
     <View style={styles.container}>
@@ -10,21 +12,25 @@ const SignupForm = ({ navigation }) => {
             <Text style={styles.label}>Full Names</Text>
             <TextInput 
                   placeholder='Type your full names'
+                  placeholderTextColor={'#fff'}
                   style={styles.input}
             />
             <Text style={styles.label}>Email</Text>
             <TextInput 
                   placeholder='Type your email'
+                  placeholderTextColor={'#fff'}
                   style={styles.input}
             />
             <Text style={styles.label}>Password</Text>
             <TextInput 
                   placeholder='Type a new password'
+                  placeholderTextColor={'#fff'}
                   style={styles.input}
             />
             <Text style={styles.label}>Confirm Password</Text>
             <TextInput 
                   placeholder='Confirm password'
+                  placeholderTextColor={'#fff'}
                   style={styles.input}
             />
 
@@ -47,6 +53,9 @@ const styles = StyleSheet.create({
       container: {
             width: width,
             paddingHorizontal: 20,
+            backgroundColor: '#114D80',
+            minHeight: height,
+            paddingTop: 40
       },
       title: {
             fontSize: 20,
@@ -62,12 +71,14 @@ const styles = StyleSheet.create({
             fontWeight: 'bold'
       },
       input: {
-            borderColor: "#2296F3",
+            borderColor: "#fff",
             borderWidth: 2,
             paddingVertical: 10,
             paddingHorizontal: 24,
             borderRadius: 24,
             marginVertical: 10,
+            color: '#fff',
+            
       },
 
       but: {

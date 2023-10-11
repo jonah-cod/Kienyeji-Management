@@ -5,8 +5,11 @@ import {
   Dimensions,
   Image,
   TouchableOpacity,
+  ScrollView,
 } from "react-native";
 import React from "react";
+
+import { Calendar, LocaleConfig } from "react-native-calendars";
 import { FontAwesomeIcon } from "@fortawesome/react-native-fontawesome";
 import {
   faBars,
@@ -14,12 +17,13 @@ import {
   faUser,
   faFilePen,
   faPlus,
+  faBell,
 } from "@fortawesome/free-solid-svg-icons";
 
 const width = Dimensions.get("window").width;
 const height = Dimensions.get("window").height;
 
-const Home = ({navigation}) => {
+const Home = ({ navigation }) => {
   return (
     <View style={styles.container}>
       <View style={styles.navbar}>
@@ -27,19 +31,83 @@ const Home = ({navigation}) => {
         <FontAwesomeIcon icon={faBars} style={styles.logo} size={30} />
       </View>
 
-      <View style={styles.mainsection}>
-            <Text style={styles.title}>
-                  Home Page
-            </Text>
-
-            <TouchableOpacity onPress={()=>navigation.navigate('login')}>
-                 <Text>
-                        Login
-                  </Text> 
+      <ScrollView style={styles.scrollview}>
+        <View style={styles.mainsection}>
+          <View style={styles.topbar}>
+            <View style={styles.greetings}>
+              <Text style={styles.title}>Hello Seargent,</Text>
+              <Text style={styles.subtitle}>Here is what we have for you.</Text>
+            </View>
+            <TouchableOpacity style={styles.notification}>
+              <FontAwesomeIcon
+                icon={faBell}
+                style={styles.notificationitem}
+                size={20}
+              />
+              <Text style={styles.dot}></Text>
             </TouchableOpacity>
-            
+          </View>
+          <Text
+            style={{
+              fontSize: 24,
+              fontWeight: "800",
+              color: "#121212",
+              marginVertical: 20,
+            }}
+          >
+            Farm survey
+          </Text>
 
-      </View>
+          <ScrollView horizontal={true} scrollIndicatorInsets={true}>
+            <View style={styles.farmsurvey}>
+              <View style={styles.surveyitem}>
+                <Image
+                  style={styles.surveyimage}
+                  source={require("../assets/bird.png")}
+                />
+                <Text style={styles.surveynumber}>550</Text>
+                <Text style={styles.surveytitle}>Birds</Text>
+              </View>
+
+              <View style={styles.surveyitem}>
+                <Image
+                  style={styles.surveyimage}
+                  source={require("../assets/eggs.png")}
+                />
+                <Text style={styles.surveynumber}>1099</Text>
+                <Text style={styles.surveytitle}>Eggs collected</Text>
+              </View>
+
+              <View style={styles.surveyitem}>
+                <Image
+                  style={styles.surveyimage}
+                  source={require("../assets/feeds.png")}
+                />
+                <Text style={styles.surveynumber}>150</Text>
+                <Text style={styles.surveytitle}>KGS of Feeds</Text>
+              </View>
+
+              <View style={styles.surveyitem}>
+                <Image
+                  style={styles.surveyimage}
+                  source={require("../assets/chick.png")}
+                />
+                <Text style={styles.surveynumber}>350</Text>
+                <Text style={styles.surveytitle}>Chicks</Text>
+              </View>
+            </View>
+          </ScrollView>
+
+          <Text style={{fontSize: 24, fontWeight:'800', color: '#121212', marginVertical:20}}>Upcoming Events</Text>
+          <View style={styles.events}>
+            <Calendar />
+          </View>
+
+          <TouchableOpacity onPress={() => navigation.navigate("login")}>
+            <Text>Login</Text>
+          </TouchableOpacity>
+        </View>
+      </ScrollView>
 
       <View style={styles.toolbar}>
         <TouchableOpacity>
@@ -94,26 +162,93 @@ const styles = StyleSheet.create({
     color: "#114D80",
   },
 
-  
-
   image: {
     width: 50,
     height: 50,
     borderRadius: 50,
   },
 
-  mainsection: {
-      width: '100%',
+  scrollview: {
+    width: "100%",
+    marginBottom: 80,
+  },
 
-      paddingHorizontal: 20
+  mainsection: {
+    width: "100%",
+
+    paddingHorizontal: 20,
+  },
+
+  topbar: {
+    flexDirection: "row",
+    justifyContent: "space-between",
+    marginVertical: 20,
   },
   title: {
-    fontSize: 20,
-    marginVertical: 20,
-    color: "#2296F3",
+    fontSize: 16,
+    color: "#114D80",
     fontWeight: "bold",
-//     alignSelf: 'flex-start'
   },
+
+  subtitle: {
+    fontSize: 12,
+    color: "#114D80",
+    fontWeight: "bold",
+  },
+  notification: {
+    position: "relative",
+  },
+
+  notificationitem: {
+    color: "#114D80",
+  },
+
+  dot: {
+    width: 8,
+    height: 8,
+    borderRadius: 5,
+    backgroundColor: "#A83A24",
+    position: "absolute",
+    right: 2,
+    top: -2,
+  },
+
+  farmsurvey: {
+    flexDirection: "row",
+    width: "100%",
+    flex: 1,
+    gap: 10,
+  },
+
+  surveyitem: {
+    width: 200,
+    height: 300,
+    flex: 1,
+    alignItems: "center",
+    justifyContent: "space-evenly",
+
+    backgroundColor: "#E7F5FA",
+    borderRadius: 10,
+  },
+  surveyimage: {
+    width: "100%",
+    objectFit: "contain",
+    margin: 0,
+    mixBlendMode: "multiply",
+  },
+  surveynumber: {
+    margin: 0,
+    color: "#121212",
+    fontSize: 24,
+    fontWeight: "800",
+  },
+  surveytitle: {
+    margin: 0,
+    color: "#121212",
+    fontSize: 16,
+    fontWeight: "600",
+  },
+
   toolbar: {
     backgroundColor: "#114D80",
     width: "100%",

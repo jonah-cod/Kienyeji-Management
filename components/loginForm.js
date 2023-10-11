@@ -32,6 +32,7 @@ const LoginForm = ({navigation}) => {
                         <Text style={styles.label}>Email</Text>
                         <TextInput
                               placeholder="e.g email@example.com"
+                              placeholderTextColor={'#fff'}
                               style={styles.input}
                               onChangeText={(value) => setEmail(value)}
                               value={email}
@@ -39,6 +40,7 @@ const LoginForm = ({navigation}) => {
                         <Text style={styles.label}>Password</Text>
                         <TextInput
                               placeholder="e.g your password"
+                              placeholderTextColor={'#fff'}
                               style={styles.input}
                               onChangeText={(value) => setPassword(value)}
                               secureTextEntry={true}
