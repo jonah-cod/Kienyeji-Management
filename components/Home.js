@@ -9,7 +9,7 @@ import {
 } from "react-native";
 import React from "react";
 
-import { Calendar, LocaleConfig } from "react-native-calendars";
+import { WeekCalendar, LocaleConfig, CalendarProvider } from "react-native-calendars";
 import { FontAwesomeIcon } from "@fortawesome/react-native-fontawesome";
 import {
   faBars,
@@ -100,7 +100,17 @@ const Home = ({ navigation }) => {
 
           <Text style={{fontSize: 24, fontWeight:'800', color: '#121212', marginVertical:20}}>Upcoming Events</Text>
           <View style={styles.events}>
-            <Calendar />
+          <CalendarProvider date={'2023-10-10'} 
+                            showTodayButton={true} 
+                            todayButtonStyle={{bottom: 15, right: -255}} 
+                            testID="calendars" 
+                            theme={{todayButtonTextColor: "#00AAAF"}}
+                            style={{marginTop: 10}}
+                            >
+
+            <WeekCalendar firstDay={1} showWeekNumbers={true}/>
+          </CalendarProvider>
+            
           </View>
 
           <TouchableOpacity onPress={() => navigation.navigate("login")}>
@@ -234,7 +244,6 @@ const styles = StyleSheet.create({
     width: "100%",
     objectFit: "contain",
     margin: 0,
-    mixBlendMode: "multiply",
   },
   surveynumber: {
     margin: 0,
