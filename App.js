@@ -6,11 +6,11 @@ import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import LoginForm from "./components/loginForm";
 import SignupForm from "./components/signupForm";
 import Home from "./components/Home";
+import Menu from "./components/Menu";
 
 export default function App() {
   const Stack = createNativeStackNavigator();
   return (
-  
     <NavigationContainer >
         <Stack.Navigator initialRouteName="home" screenOptions={{headerShown: false}}>
           <Stack.Screen name="home" component={Home}/>

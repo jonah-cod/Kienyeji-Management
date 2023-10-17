@@ -6,29 +6,40 @@ import {
   Image,
   TouchableOpacity,
   ScrollView,
+  DrawerLayoutAndroid
 } from "react-native";
-import React from "react";
+import React, {useRef} from "react";
 
-import { WeekCalendar, LocaleConfig, CalendarProvider } from "react-native-calendars";
+import { WeekCalendar, CalendarProvider } from "react-native-calendars";
 import { FontAwesomeIcon } from "@fortawesome/react-native-fontawesome";
 import {
   faBars,
-  faHouse,
-  faUser,
-  faFilePen,
-  faPlus,
   faBell,
 } from "@fortawesome/free-solid-svg-icons";
+
+
+import menuNavigation from "./Menu";
+import BottomTab from "./BottomTab";
 
 const width = Dimensions.get("window").width;
 const height = Dimensions.get("window").height;
 
 const Home = ({ navigation }) => {
+
+  const drawer = useRef(null)
   return (
+    <DrawerLayoutAndroid
+      ref={drawer}
+      drawerWidth={width*.75}
+      drawerPosition={'right'}
+      renderNavigationView={()=>menuNavigation(drawer)}>
     <View style={styles.container}>
       <View style={styles.navbar}>
         <Image source={require("../assets/logo.png")} style={styles.image} />
-        <FontAwesomeIcon icon={faBars} style={styles.logo} size={30} />
+        <TouchableOpacity onPress={()=>drawer.current.openDrawer()}>
+          <FontAwesomeIcon icon={faBars} style={styles.logo} size={30} />
+        </TouchableOpacity>
+        
       </View>
 
       <ScrollView style={styles.scrollview}>
@@ -108,7 +119,7 @@ const Home = ({ navigation }) => {
                             style={{marginTop: 10}}
                             >
 
-            <WeekCalendar firstDay={1} showWeekNumbers={true}/>
+            <WeekCalendar firstDay={1} showWeekNumbers={true} />
           </CalendarProvider>
             
           </View>
@@ -118,32 +129,10 @@ const Home = ({ navigation }) => {
           </TouchableOpacity>
         </View>
       </ScrollView>
-
-      <View style={styles.toolbar}>
-        <TouchableOpacity>
-          <FontAwesomeIcon
-            icon={faHouse}
-            style={styles.toolbaricon}
-            size={24}
-          />
-        </TouchableOpacity>
-
-        <TouchableOpacity>
-          <FontAwesomeIcon
-            icon={faFilePen}
-            style={styles.toolbaricon}
-            size={24}
-          />
-        </TouchableOpacity>
-        <TouchableOpacity>
-          <FontAwesomeIcon icon={faPlus} style={styles.toolbaricon} size={24} />
-        </TouchableOpacity>
-
-        <TouchableOpacity>
-          <FontAwesomeIcon icon={faUser} style={styles.toolbaricon} size={24} />
-        </TouchableOpacity>
-      </View>
+            
+      <BottomTab/>
     </View>
+    </DrawerLayoutAndroid>
   );
 };
 
@@ -195,13 +184,14 @@ const styles = StyleSheet.create({
     marginVertical: 20,
   },
   title: {
-    fontSize: 16,
+    fontSize: 20,
     color: "#114D80",
     fontWeight: "bold",
   },
 
   subtitle: {
-    fontSize: 12,
+    fontSize: 16
+    ,
     color: "#114D80",
     fontWeight: "bold",
   },
@@ -258,19 +248,7 @@ const styles = StyleSheet.create({
     fontWeight: "600",
   },
 
-  toolbar: {
-    backgroundColor: "#114D80",
-    width: "100%",
-    flexDirection: "row",
-    justifyContent: "space-between",
-    padding: 20,
-    position: "absolute",
-    bottom: 0,
-  },
-
-  toolbaricon: {
-    color: "#fff",
-  },
+  
 });
 
 export default Home;
