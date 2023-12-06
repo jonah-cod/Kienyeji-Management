@@ -10,6 +10,7 @@ import {
 } from "react-native";
 import React, {useRef} from "react";
 
+
 import { WeekCalendar, CalendarProvider } from "react-native-calendars";
 import { FontAwesomeIcon } from "@fortawesome/react-native-fontawesome";
 import {
@@ -20,6 +21,7 @@ import {
 
 import menuNavigation from "./Menu";
 import BottomTab from "./BottomTab";
+import Locationtab from "./Locationtab";
 
 const width = Dimensions.get("window").width;
 const height = Dimensions.get("window").height;
@@ -128,6 +130,8 @@ const Home = ({ navigation }) => {
             <Text>Login</Text>
           </TouchableOpacity>
         </View>
+
+        <Locationtab/>
       </ScrollView>
             
       <BottomTab/>

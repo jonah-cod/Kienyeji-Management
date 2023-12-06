@@ -129,6 +129,7 @@ const styles = StyleSheet.create({
             borderRadius: 24,
             marginVertical: 10,
             color: '#fff',
+            fontSize: 18
       },
 
       but: {

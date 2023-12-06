@@ -15,7 +15,7 @@ const ModalPopup = ({ open, closeModal, openModal}) => {
       <View style={styles.box}>
 
       <TouchableOpacity onPress={()=>closeModal()}>
-        <Text style={{color: 'red', fontSize: 20}}>
+        <Text style={{color: 'red', fontSize: 20, fontWeight: '800'}}>
           X
         </Text>
       </TouchableOpacity>
@@ -35,6 +35,7 @@ const styles = StyleSheet.create({
   box: {
     height: height * 0.2,
     backgroundColor: "#fff",
+    paddingHorizontal:20,
     position: "absolute",
     right: 0,
     left: 0,
